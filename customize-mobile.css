@@ -1,0 +1,190 @@
+/**
+ * Improve the Mobile Customization Experience
+ */
+
+@media screen and (max-width:640px) {
+	/* Full-width Customize Controls and Full-width Preview, with toggle button. */
+	.wp-full-overlay.expanded {
+		margin-left: 0;
+	}
+
+	.wp-full-overlay.expanded .wp-full-overlay-sidebar {
+		width: 100%;
+		border: none;
+	}
+	
+	.wp-full-overlay-sidebar .wp-full-overlay-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: #222;
+		border-bottom: 1px solid #000;
+	}
+
+	#customize-header-actions .button-primary {
+		margin: 0 -15px 0 0;
+		height: 45px;
+		border-radius: 0;
+		border: none;
+		border-left: 1px solid #000;
+		padding: 9px 20px;
+	}
+
+	.customize-controls-close,
+	.control-panel-back {
+		background: #222;
+		color: #ccc;
+		border-color: #000;
+	}
+
+	.wp-full-overlay-main {
+		right: auto;
+		top: 46px;
+		bottom: 0;
+		width: 100%;
+		height: calc(100% - 46px);
+	}
+
+	/* No need for a footer; move the collapse button up and rebrand it as preview. */
+	.wp-customizer .wp-full-overlay a.collapse-sidebar {
+		display: block;
+		top: 0;
+		left: 48px;
+		height: 45px;
+		width: auto;
+		margin: 0;
+		padding: 0 12px;
+		color: #ccc;
+		border-right: 1px solid #000 !important; /* override !important in customize-controls.css */
+		transition: .1s color ease-in-out,
+		            .1s background ease-in-out;
+	}
+
+	.wp-customizer .wp-full-overlay a.collapse-sidebar:focus,
+	.wp-customizer .wp-full-overlay a.collapse-sidebar:hover {
+		background: #0074ac !important; /* override !important in customize-controls.css */
+		color: #fff;
+	}
+
+	.wp-customizer .wp-full-overlay .collapse-sidebar:before {
+		font: normal 40px/1 dashicons;
+		content: "\f177";
+		position: relative;
+		top: 3px;
+	}
+
+	.wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
+		bottom: 0;
+	}
+
+	.wp-full-overlay .collapse-sidebar-arrow {
+		display: none;
+	}
+
+	.wp-full-overlay .collapse-sidebar-label {
+		position: relative;
+		top: -10px;
+		left: 0;
+		font-size: 18px;
+	}
+
+	.wp-full-overlay.collapsed .collapse-sidebar:before {
+		content: "\f309";
+		font-size: 30px;
+		top: 10px;
+	}
+
+	.wp-full-overlay.collapsed .collapse-sidebar-label {
+		display: inline-block;
+		top: 0;
+	}
+
+	/* Panels */
+	#customize-theme-controls .control-section.current-panel > h3.accordion-section-title {
+		left: -100%;
+	}
+
+	/* Move available Widgets (can be re-used for menus also) */
+	#widgets-left #available-widgets {
+		transition: none;
+	}
+
+	.adding-widget #widgets-left #available-widgets {
+		z-index: 50;
+		background: #eee;
+		width: 100%;
+		top: 46px;
+	}
+
+	body.adding-widget #customize-theme-controls .accordion-section.open .add-new-widget {
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 45px;
+		margin: 0 !important;
+		padding: 9px;
+		z-index: 200;
+
+		background: #222;
+		color: #ccc;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		font-size: 18px;
+		text-align: center;
+	}
+
+	body.adding-widget #customize-theme-controls .accordion-section.open .add-new-widget:hover,
+	body.adding-widget #customize-theme-controls .accordion-section.open .add-new-widget:focus {
+		background: #0072a2;
+		color: #fff;
+	}
+
+	body.adding-widget #customize-theme-controls .accordion-section.open .add-new-widget:before {
+		font-size: 30px;
+	}
+
+	.adding-widget .wp-full-overlay .collapse-sidebar {
+		z-index: 9;
+	}
+
+	/* Make the Customizer Control Sections bigger */
+	.control-section.control-panel .preview-notice,
+	#customize-info .preview-notice {
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	.control-section.control-panel .accordion-section-title .panel-title,
+	#customize-info .theme-name {
+		font-size: 26px;
+		line-height: 32px;
+	}
+
+	#customize-theme-controls .accordion-section-title {
+		font-size: 18px;
+		line-height: 24px;
+		padding: 14px;
+	}
+
+	.wp-customizer .control-section .accordion-section-title:after {
+		top: 14px;
+		font-size: 24px;
+	}
+
+	#customize-info .accordion-section-title:after,
+	#customize-controls .accordion-section-title:after {
+		content: "\f347";
+	}
+
+	#customize-info.open .accordion-section-title:after,
+	#customize-controls .open .accordion-section-title:after {
+	    content: "\f343";
+	}
+
+	#customize-theme-controls .control-section.control-panel > .accordion-section-title:after {
+		content: "\f345";
+	}
+}
