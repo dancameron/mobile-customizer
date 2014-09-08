@@ -3,38 +3,20 @@
  */
 
 @media screen and (max-width:640px) {
-	/* Full-width Customize Controls and Full-width Preview, with toggle button. */
-	.wp-full-overlay.expanded {
-		margin-left: 0;
+
+	/**
+	 * Structure
+	 */
+
+	.wp-full-overlay-sidebar .wp-full-overlay-header {
+		position: fixed;
+		top: 0;
+		left: 0;
 	}
 
 	.wp-full-overlay.expanded .wp-full-overlay-sidebar {
 		width: 100%;
 		border: none;
-	}
-	
-	.wp-full-overlay-sidebar .wp-full-overlay-header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		background: #222;
-		border-bottom: 1px solid #000;
-	}
-
-	#customize-header-actions .button-primary {
-		margin: 0 -15px 0 0;
-		height: 45px;
-		border-radius: 0;
-		border: none;
-		border-left: 1px solid #000;
-		padding: 9px 20px;
-	}
-
-	.customize-controls-close,
-	.control-panel-back {
-		background: #222;
-		color: #ccc;
-		border-color: #000;
 	}
 
 	.wp-full-overlay-main {
@@ -45,36 +27,180 @@
 		height: calc(100% - 46px);
 	}
 
+	#customize-controls {
+		/* background: rgba( 238, 238, 238, 0.5 ); */
+	}
+
+	/* Full-width Customize Controls and Full-width Preview, with toggle button. */
+	.wp-full-overlay.expanded {
+		margin-left: 0;
+	}
+
+	/* Remove the context section */
+	.wp-full-overlay #customize-controls #customize-info {
+		display: none;
+	}
+
+	.adding-widget .wp-full-overlay .collapse-sidebar {
+		z-index: 9;
+	}
+
+	/*
+	 Collapsed
+	 */
+
+	.collapsed #customize-preview {
+		margin-left: 48px;
+	}
+
+	.wp-full-overlay.collapsed #customize-controls {
+		margin-left: 0px;
+		width: 48px;
+		white-space: nowrap;
+	}
+
+	.wp-full-overlay.collapsed #customize-controls #customize-info:before {
+		content: "\f345";
+	}
+
+	.wp-customizer .wp-full-overlay #customize-info .accordion-section-title:after,
+	.wp-customizer .wp-full-overlay #customize-controls .accordion-section-title:after {
+		transition: .1s opacity ease-in-out;
+	}
+
+	/* Remove content when collapsed */
+	.wp-customizer .wp-full-overlay.collapsed #customize-info .accordion-section-title,
+	.wp-customizer .wp-full-overlay.collapsed #customize-controls .accordion-section-title
+	.wp-customizer .wp-full-overlay.collapsed #customize-info .accordion-section-title:after,
+	.wp-customizer .wp-full-overlay.collapsed #customize-controls .accordion-section-title:after {
+		opacity: 0;
+	}
+
+
+	/**
+	 * Menus
+	 */
+	
+	.control-section .accordion-section-title { 
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.wp-customizer .control-section .accordion-section-title:after,
+	.control-section.control-panel > .accordion-section-title:after {
+		font-size: 1.5em;
+		line-height: 1.5em;
+	}
+
+	.control-section.control-panel > .accordion-section-title:after {
+		line-height: 2.3em;
+	}
+
+	/* Change section arrow icons */
+	#customize-info .accordion-section-title:after,
+	#customize-controls .accordion-section-title:after {
+		content: "\f347";
+	}
+
+	#customize-info.open .accordion-section-title:after,
+	#customize-controls .open .accordion-section-title:after {
+		content: "\f343";
+	}
+
+	#customize-theme-controls .control-section.control-panel > .accordion-section-title:after {
+		content: "\f345";
+	}
+
+	/* Adding the icons to the menu titles */
+	.control-section .accordion-section-title {
+		padding-left: 48px;
+	}
+
+	#customize-theme-controls .accordion-section-title {
+		font-size: 1.3em;
+		line-height: 2em;
+	}
+
+	.control-section .accordion-section-title:before {
+		font: normal 1.3em/1 dashicons;
+		position: absolute;
+		top: 0.75em;
+		left: 14px;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* Ever item should have an icon */
+	.control-section .accordion-section-title:before {
+		content: "\f111";
+	}
+
+	#accordion-section-title_tagline .accordion-section-title:before {
+		content: "\f175";
+	}
+
+	#accordion-section-colors .accordion-section-title:before {
+		content: "\f309";
+	}
+
+	#accordion-section-header_image .accordion-section-title:before {
+		content: "\f129";
+	}
+
+	#accordion-section-background_image .accordion-section-title:before {
+		content: "\f128";
+	}
+
+	#accordion-panel-widgets .accordion-section-title:before {
+		content: "\f116";
+	}
+
+	#accordion-section-nav .accordion-section-title:before {
+		content: "\f333";
+	}
+
+	#accordion-section-static_front_page .accordion-section-title:before {
+		content: "\f109";
+	}
+	
+
+	/**
+	 * Header
+	 */
+
+	#customize-header-actions .button-primary {
+		margin: 0 -15px 0 0;
+		height: 46px;
+		border-radius: 0;
+		border: none;
+		border-bottom: none;
+		padding: 9px 20px;
+	}
+
 	/* No need for a footer; move the collapse button up and rebrand it as preview. */
 	.wp-customizer .wp-full-overlay .wp-full-overlay-footer a.collapse-sidebar {
 		display: block;
 		top: 0;
-		left: 48px;
-		height: 45px;
-		width: auto;
+		left: 75px;
 		margin: 0;
+		height: 45px;
 		padding: 0 12px;
-		color: #ccc;
-		border-right: 1px solid #000 !important; /* override !important in customize-controls.css */
 		transition: .1s color ease-in-out,
-		            .1s background ease-in-out;
+					.1s background ease-in-out;
 	}
 
 	.wp-customizer .wp-full-overlay a.collapse-sidebar:focus,
-	.wp-customizer .wp-full-overlay a.collapse-sidebar:hover {
-		background: #0074ac !important; /* override !important in customize-controls.css */
-		color: #fff;
+	.wp-customizer .wp-full-overlay a.collapse-sidebar:hover,
+	.wp-customizer .wp-full-overlay.collapsed a.collapse-sidebar:before {
+		color: #0074ac !important;
 	}
 
-	.wp-customizer .wp-full-overlay .collapse-sidebar:before {
+	.wp-customizer .wp-full-overlay a.collapse-sidebar:before {
 		font: normal 40px/1 dashicons;
 		content: "\f177";
 		position: relative;
 		top: 3px;
-	}
-
-	.wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
-		bottom: 0;
 	}
 
 	.wp-full-overlay .collapse-sidebar-arrow {
@@ -88,22 +214,10 @@
 		font-size: 18px;
 	}
 
-	.wp-full-overlay.collapsed .collapse-sidebar:before {
-		content: "\f309";
-		font-size: 30px;
-		top: 10px;
-	}
-
-	.wp-full-overlay.collapsed .collapse-sidebar-label {
-		display: inline-block;
-		top: 0;
-	}
-
-	/* Panels */
-	#customize-theme-controls .control-section.current-panel > h3.accordion-section-title {
-		left: -100%;
-	}
-
+	/**
+	 * Widgets
+	 */
+	
 	/* Move available Widgets (can be re-used for menus also) */
 	#widgets-left #available-widgets {
 		transition: none;
@@ -139,52 +253,13 @@
 	body.adding-widget #customize-theme-controls .accordion-section.open .add-new-widget:hover,
 	body.adding-widget #customize-theme-controls .accordion-section.open .add-new-widget:focus {
 		background: #0072a2;
-		color: #fff;
+		color: #0072a2;
 	}
 
 	body.adding-widget #customize-theme-controls .accordion-section.open .add-new-widget:before {
 		font-size: 30px;
 	}
 
-	.adding-widget .wp-full-overlay .collapse-sidebar {
-		z-index: 9;
-	}
 
-	/* Make the Customizer Control Sections bigger */
-	.control-section.control-panel .preview-notice,
-	#customize-info .preview-notice {
-		font-size: 15px;
-		line-height: 18px;
-	}
 
-	.control-section.control-panel .accordion-section-title .panel-title,
-	#customize-info .theme-name {
-		font-size: 26px;
-		line-height: 32px;
-	}
-
-	#customize-theme-controls .accordion-section-title {
-		font-size: 18px;
-		line-height: 24px;
-		padding: 14px;
-	}
-
-	.wp-customizer .control-section .accordion-section-title:after {
-		top: 14px;
-		font-size: 24px;
-	}
-
-	#customize-info .accordion-section-title:after,
-	#customize-controls .accordion-section-title:after {
-		content: "\f347";
-	}
-
-	#customize-info.open .accordion-section-title:after,
-	#customize-controls .open .accordion-section-title:after {
-	    content: "\f343";
-	}
-
-	#customize-theme-controls .control-section.control-panel > .accordion-section-title:after {
-		content: "\f345";
-	}
 }

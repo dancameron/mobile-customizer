@@ -6,11 +6,18 @@
  * License: GPL
  */
 
-add_action( 'customize_controls_enqueue_scripts', 'better_mobile_customizer_enqueue' );
+add_action( 'customize_controls_enqueue_scripts', 'better_mobile_customizer_enqueue', 1000 );
 function better_mobile_customizer_enqueue() {
+	
+	// enqueue
 	wp_enqueue_style( 'customize-mobile', plugin_dir_url( __FILE__ ) . '/customize-mobile.css' );
 	wp_enqueue_script( 'customize-mobile', plugin_dir_url( __FILE__ ) . '/customize-mobile.js', array( 'jquery' ) );
+	
+	// Temp Localization
+	$mc_js_object = array(
+		'preview_string' => __('Preview')
+	);
+	wp_localize_script( 'customize-mobile', 'wp_mobile_customizer', apply_filters( 'customize_mobile_localization', $mc_js_object ) );
 
-	// Some variant of jQuery Mobile would obviously be bundled with core; or, we would extract only the features we need (swipe events, currently).
-	wp_enqueue_script( 'jquery-mobile', plugin_dir_url( __FILE__ ) . '/jquery.mobile.custom.min.js', array( 'jquery' ) );
+	// Swipe is wiped out...
 }

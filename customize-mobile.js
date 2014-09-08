@@ -1,53 +1,63 @@
-// This can be implemented much more simply & elegantly as a core patch.
-( function( wp, $ ) {
+( function( $ ) {
 
-	if ( ! wp || ! wp.customize ) { return; }
-
-	// Set up our namespace.
-	var api = wp.customize;
-	
 	function initMobileCustomize() {
-		$( '.collapse-sidebar .collapse-sidebar-label' ).text( 'Preview' );
 
-		/**
-		 * Toggle preview/controls button.
-		 */
+		$( '.collapse-sidebar .collapse-sidebar-label' ).text( wp_mobile_customizer.preview_string );
+
+		// Preview link actions
 		$( '.collapse-sidebar' ).on( 'click keydown', function( event ) {
-			if ( event.type === 'keydown' &&  13 !== event.which ) // enter
+			closeOpenPanels();
+			closeAccoridians();
+		} );
+
+		// Expand/Collapse accordion sections on click.
+		$( '.accordion-container' ).on( 'click keydown', '.accordion-section-title', function( e ) {
+			// accessibility
+			if ( e.type === 'keydown' && 13 !== e.which ) { // "return" key
 				return;
-
-			var label = $( this ).find( '.collapse-sidebar-label' );
-			if ( 'Preview' === label.text() ) {
-				label.text( 'Controls' );
-			} else {
-				label.text( 'Preview' );				
 			}
 
-			event.preventDefault();
-		} );
+			// If not collapsed
+			if ( ! $( this ).closest('.wp-full-overlay').hasClass('collapsed') ) {
+				return;
+			};
 
-		/**
-		 * Toggle the preview/controls by swiping.
-		 */
-		$( window ).on( 'swipeleft', function( e ) {
-			if ( $( '.wp-full-overlay' ).hasClass( 'expanded' ) ) {
-				// Show the preview.
-				$( '.collapse-sidebar' ).trigger( 'click' );
-			}
-		} );
+			e.preventDefault(); // Keep this AFTER the key filter above
+			mobileExpandPanel( $( this ) );
+		});
+	}
 
-		$( 'body' ).on( 'swiperight', function( e ) {
-			if ( $( '.wp-full-overlay' ).hasClass( 'collapsed' ) ) {
-				// Show the controls.
-				$( '.collapse-sidebar' ).trigger( 'click' );
-			} else if ( $( '.wp-full-overlay' ).hasClass( 'in-sub-panel' ) ) {
-				$( '.current-panel .control-panel-back' ).trigger( 'click' );
-			}
-			
-		} );
+	/**
+	 * Trigger the collapse link
+	 * @param  {} el 
+	 * @return {null}    
+	 */
+	function mobileExpandPanel ( el ) {
+		$( '.collapse-sidebar' ).trigger( 'click' );
+	}
 
+	/**
+	 * Trigger the collapse link
+	 * @param  {} el 
+	 * @return {null}    
+	 */
+	function closeOpenPanels ( el ) {
+		$( '.control-panel-back' ).trigger( 'click' );
+	}
+
+	/**
+	 * Find the open section and close the content.
+	 * @param  {} el 
+	 * @return {null}    
+	 */
+	function closeAccoridians ( el ) {
+		var openSection = $('.accordion-section.open');
+
+		openSection.removeClass( 'open' );
+		openSection.find( '.accordion-section-content' ).slideUp( 150 );
+		
 	}
 
 	$( document ).ready( function() { initMobileCustomize(); } );
 
-})( window.wp, jQuery );
+})( jQuery );
